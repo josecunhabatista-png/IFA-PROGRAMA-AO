@@ -1,5 +1,14 @@
 body{
-    background-color: rgb(2, 1, 1);
+    background-color: rgb(200, 235, 4);
     text-align: justify;
     font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
+    font-size: xx-large;
+}
+header{
+    background-color: rgb(169, 145, 190);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: xx-large;
+    font-weight: bolder;
 }
