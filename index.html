@@ -1,48 +1,116 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeria de Mídia</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+/* Reset Básico e Variáveis de Cores Neutras (Alto Contraste) */
+:root {
+  --bg-color: #f8f9fa;          /* Fundo claro neutro */
+  --card-bg: #ffffff;           /* Fundo dos cartões */
+  --text-main: #1a1a1a;         /* Texto quase preto para contraste máximo */
+  --text-muted: #333333;        /* Texto secundário */
+  --border-color: #000000;      /* Bordas bem definidas */
+  --focus-outline: #005fcc;     /* Indicador de foco bem visível */
+  --btn-bg: #222222;            /* Botão neutro escuro */
+  --btn-text: #ffffff;          /* Texto do botão */
+}
 
-    <header>
-        <h1>Minha Galeria de Fotos e Vídeos</h1>
-    </header>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    <main class="gallery-container">
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/600x400" alt="Descrição da Imagem 1">
-        </div>
+body {
+  font-family: Arial, Helvetica, sans-serif; /* Fontes sem serifa facilitam a leitura */
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 1.125rem; /* ~18px para facilitar a leitura */
+  padding: 20px;
+}
 
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/600x400" alt="Descrição da Imagem 2">
-        </div>
+/* Foco Acessível (Teclado e Leitores) */
+a:focus, button:focus, [tabindex="0"]:focus {
+  outline: 4px solid var(--focus-outline);
+  outline-offset: 2px;
+}
 
-        <div class="gallery-item">
-            <video controls poster="https://via.placeholder.com/600x400">
-                <source src="seu-video1.mp4" type="video/mp4">
-                Seu navegador não suporta o elemento de vídeo.
-            </video>
-        </div>
+/* Cabeçalho */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
 
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/600x400" alt="Descrição da Imagem 4">
-        </div>
+h1, h2 {
+  font-weight: 700;
+  color: var(--text-main);
+}
 
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/600x400" alt="Descrição da Imagem 5">
-        </div>
+/* Botão de Áudio */
+#btn-audio {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: 2px solid var(--border-color);
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
-        <div class="gallery-item">
-            <video controls poster="https://via.placeholder.com/600x400">
-                <source src="seu-video2.mp4" type="video/mp4">
-                Seu navegador não suporta o elemento de vídeo.
-            </video>
-        </div>
-    </main>
+#btn-audio:hover {
+  background-color: #444444;
+}
 
-</body>
-</html>
+/* Seção de Introdução */
+.intro-section {
+  background-color: var(--card-bg);
+  padding: 24px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+/* Layout em Grid (4 Espaços) */
+.galeria-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+/* Cartões de Mídia */
+.card-midia {
+  background-color: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-midia img, 
+.card-midia video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+figcaption {
+  margin-top: 12px;
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* Rodapé */
+footer {
+  margin-top: 40px;
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.95rem;
+}

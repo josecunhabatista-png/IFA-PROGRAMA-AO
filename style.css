@@ -1,276 +1,86 @@
-body{
-    background-color: rgb(200, 235, 4);
-    text-align: justify;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: justify;
-    font-size: xx-large;
-}
-header{
-    background-color: rgba(132, 15, 235, 0.685);
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-style: italic;
-    font-size: xx-large;
-    font-weight: bolder;
-    flex: auto;
-}:root {
-    --color-primary: #0f4c81;
-    --color-primary-hover: #0a3357;
-    --color-secondary: #5c6bc0;
-    --color-secondary-hover: #3f51b5;
-    --color-focus: #ffbf00; /* Cor de alto contraste para o indicador de foco */
-    --color-text: #212121;
-    --color-bg: #ffffff;
-    --color-bg-light: #f4f6f8;
-    --color-border: #cccccc;
-    
-    --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    --min-target-size: 48px; /* Tamanho mínimo do alvo de clique (Recomendação WCAG) */
-}
 
-/* Reset básico garantindo box-sizing */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apresentação Acessível</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: var(--font-family);
-    font-size: 1.125rem; /* 18px para facilitar a leitura */
-    line-height: 1.6;
-    color: var(--color-text);
-    background-color: var(--color-bg);
-}
+  <header class="header-container">
+    <h1>Apresentação do Projeto</h1>
+    <button id="btn-audio" aria-label="Ouvir texto da página em áudio" onclick="lerPagina()">
+      🔊 Ouvir Apresentação
+    </button>
+  </header>
 
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
+  <main id="conteudo-principal">
+    <section class="intro-section" tabIndex="0">
+      <h2>Visão Geral</h2>
+      <p>
+        Bem-vindo à nossa apresentação. Este layout foi projetado com foco em acessibilidade visual,
+        alto contraste e compatibilidade com tecnologias assistivas.
+      </p>
+    </section>
 
-/* ==========================================================================
-   ACESSIBILIDADE MOTORA & TECLADO (FOCO VISÍVEL E SKIP LINK)
-   ========================================================================== */
+    <section class="galeria-section" aria-label="Galeria de Mídias da Apresentação">
+      
+      <article class="card-midia">
+        <figure>
+          <img src="https://via.placeholder.com/600x400" alt="Descrição clara e detalhada da Imagem 1 para leitores de tela">
+          <figcaption><strong>Mídia 1:</strong> Descrição legível e explicativa da primeira foto.</figcaption>
+        </figure>
+      </article>
 
-/* Link de atalho para pular a navegação (visível apenas ao receber foco) */
-.skip-link {
-    position: absolute;
-    top: -100px;
-    left: 10px;
-    background: var(--color-focus);
-    color: #000;
-    padding: 12px 20px;
-    font-weight: bold;
-    text-decoration: none;
-    z-index: 9999;
-    border: 2px solid #000;
-    border-radius: 4px;
-    transition: top 0.2s ease;
-}
+      <article class="card-midia">
+        <figure>
+          <img src="https://via.placeholder.com/600x400" alt="Descrição clara e detalhada da Imagem 2 para leitores de tela">
+          <figcaption><strong>Mídia 2:</strong> Descrição legível e explicativa da segunda foto.</figcaption>
+        </figure>
+      </article>
 
-.skip-link:focus {
-    top: 10px;
-}
+      <article class="card-midia">
+        <figure>
+          <img src="https://via.placeholder.com/600x400" alt="Descrição clara e detalhada do Vídeo ou Imagem 3">
+          <figcaption><strong>Mídia 3:</strong> Descrição legível do terceiro conteúdo audiovisual.</figcaption>
+        </figure>
+      </article>
 
-/* Estilo do indicador de foco visível (CRUCIAL para acessibilidade motora) */
-*:focus-visible {
-    outline: 4px solid var(--color-focus) !important;
-    outline-offset: 3px !important;
-}
+      <article class="card-midia">
+        <figure>
+          <img src="https://via.placeholder.com/600x400" alt="Descrição clara e detalhada do Vídeo ou Imagem 4">
+          <figcaption><strong>Mídia 4:</strong> Descrição legível do quarto conteúdo audiovisual.</figcaption>
+        </figure>
+      </article>
 
-/* Remove a borda no contêiner principal após o clique no skip link */
-main:focus {
-    outline: none !important;
-}
+    </section>
+  </main>
 
-/* ==========================================================================
-   CABEÇALHO E NAVEGAÇÃO
-   ========================================================================== */
-.header {
-    background-color: var(--color-primary);
-    color: #ffffff;
-    padding: 1rem 0;
-}
+  <footer>
+    <p>&copy; 2026 - Projeto com Foco em Acessibilidade Visual e Auditiva</p>
+  </footer>
 
-.header .container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-}
+  <script>
+    function lerPagina() {
+      if ('speechSynthesis' in window) {
+        const texto = document.getElementById('conteudo-principal').innerText;
+        const synth = window.speechSynthesis;
+        
+        if (synth.speaking) {
+          synth.cancel(); // Para a leitura se já estiver lendo
+          return;
+        }
 
-.logo {
-    margin: 0;
-    font-size: 1.5rem;
-}
-
-.nav-list {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 0.75rem;
-}
-
-/* Área de clique estendida para links do menu */
-.nav-link {
-    display: inline-flex;
-    align-items: center;
-    min-height: var(--min-target-size);
-    padding: 0.5rem 1rem;
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 4px;
-}
-
-.nav-link:hover {
-    background-color: var(--color-primary-hover);
-    text-decoration: underline;
-}
-
-/* ==========================================================================
-   SEÇÕES E CARDS
-   ========================================================================== */
-.section {
-    padding: 3rem 0;
-}
-
-.hero-section {
-    background-color: var(--color-bg-light);
-    padding: 3rem 0;
-    border-bottom: 2px solid var(--color-border);
-}
-
-.bg-light {
-    background-color: var(--color-bg-light);
-}
-
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-}
-
-.card {
-    background: #ffffff;
-    border: 2px solid var(--color-border);
-    border-radius: 8px;
-    padding: 1.5rem;
-}
-
-.card h3 {
-    margin-top: 0;
-    color: var(--color-primary);
-}
-
-.tech-list {
-    padding-left: 1.5rem;
-}
-
-.tech-list li {
-    margin-bottom: 1rem;
-}
-
-kbd {
-    background-color: #eee;
-    border: 1px solid #b4b4b4;
-    border-radius: 3px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.2);
-    color: #333;
-    display: inline-block;
-    font-size: 0.85em;
-    font-weight: 700;
-    line-height: 1;
-    padding: 4px 7px;
-    white-space: nowrap;
-}
-
-/* ==========================================================================
-   FORMULÁRIOS E BOTÕES ACESSÍVEIS (ALVOS DE CLIQUE AMPLIADOS)
-   ========================================================================== */
-.accessible-form {
-    max-width: 600px;
-    margin-top: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.form-group label {
-    font-weight: bold;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    min-height: var(--min-target-size); /* Alvo fácil de clicar */
-    padding: 0.75rem;
-    font-size: 1rem;
-    border: 2px solid var(--color-border);
-    border-radius: 6px;
-    font-family: inherit;
-}
-
-.form-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 0.5rem;
-}
-
-/* Botões com dimensão mínima de 48px e espaçamento adequado */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: var(--min-target-size);
-    min-width: 140px;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    text-align: center;
-}
-
-.btn-primary {
-    background-color: var(--color-primary);
-    color: #ffffff;
-}
-
-.btn-primary:hover {
-    background-color: var(--color-primary-hover);
-}
-
-.btn-secondary {
-    background-color: #e0e0e0;
-    color: #212121;
-    border: 2px solid #b0b0b0;
-}
-
-.btn-secondary:hover {
-    background-color: #d5d5d5;
-}
-
-/* ==========================================================================
-   RODAPÉ
-   ========================================================================== */
-.footer {
-    background-color: #212121;
-    color: #ffffff;
-    text-align: center;
-    padding: 1.5rem 0;
-    margin-top: 3rem;
-}  
+        const utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR';
+        utterance.rate = 1.0; // Velocidade normal
+        synth.speak(utterance);
+      } else {
+        alert('Seu navegador não suporta a funcionalidade de leitura por áudio.');
+      }
+    }
+  </script>
+</body>
+</html>
