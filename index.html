@@ -1,116 +1,85 @@
-/* Reset Básico e Variáveis de Cores Neutras (Alto Contraste) */
-:root {
-  --bg-color: #f8f9fa;          /* Fundo claro neutro */
-  --card-bg: #ffffff;           /* Fundo dos cartões */
-  --text-main: #1a1a1a;         /* Texto quase preto para contraste máximo */
-  --text-muted: #333333;        /* Texto secundário */
-  --border-color: #000000;      /* Bordas bem definidas */
-  --focus-outline: #005fcc;     /* Indicador de foco bem visível */
-  --btn-bg: #222222;            /* Botão neutro escuro */
-  --btn-text: #ffffff;          /* Texto do botão */
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apresentação Acessível</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+  <header class="header-container">
+    <h1>Apresentação do Projeto</h1>
+    <button id="btn-audio" aria-label="Ouvir texto da página em áudio" onclick="lerPagina()">
+      🔊 Ouvir Apresentação
+    </button>
+  </header>
 
-body {
-  font-family: Arial, Helvetica, sans-serif; /* Fontes sem serifa facilitam a leitura */
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  line-height: 1.6;
-  font-size: 1.125rem; /* ~18px para facilitar a leitura */
-  padding: 20px;
-}
+  <main id="conteudo-principal">
+    <section class="intro-section" tabindex="0">
+      <h2>Visão Geral</h2>
+      <p>
+        Bem-vindo à nossa apresentação. Este modelo utiliza cores neutras com alto contraste,
+        fontes legíveis e estrutura otimizada para tecnologias assistivas.
+      </p>
+    </section>
 
-/* Foco Acessível (Teclado e Leitores) */
-a:focus, button:focus, [tabindex="0"]:focus {
-  outline: 4px solid var(--focus-outline);
-  outline-offset: 2px;
-}
+    <section class="galeria-section" aria-label="Galeria de Mídias da Apresentação">
+      
+      <article class="card-midia">
+        <figure>
+          <img src="https://via.placeholder.com/600x400" alt="Descrição detalhada da Foto 1 para leitores de tela">
+          <figcaption><strong>Mídia 1:</strong> Legenda explicativa sobre o conteúdo da primeira foto.</figcaption>
+        </figure>
+      </article>
 
-/* Cabeçalho */
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  border-bottom: 2px solid var(--border-color);
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-  gap: 15px;
-}
+      <article class="card-midia">
+        <figure>
+          <img src="https://via.placeholder.com/600x400" alt="Descrição detalhada da Foto 2 para leitores de tela">
+          <figcaption><strong>Mídia 2:</strong> Legenda explicativa sobre o conteúdo da segunda foto.</figcaption>
+        </figure>
+      </article>
 
-h1, h2 {
-  font-weight: 700;
-  color: var(--text-main);
-}
+      <article class="card-midia">
+        <figure>
+          <img src="https://via.placeholder.com/600x400" alt="Descrição detalhada da Foto ou Vídeo 3 para leitores de tela">
+          <figcaption><strong>Mídia 3:</strong> Legenda explicativa do terceiro elemento audiovisual.</figcaption>
+        </figure>
+      </article>
 
-/* Botão de Áudio */
-#btn-audio {
-  background-color: var(--btn-bg);
-  color: var(--btn-text);
-  border: 2px solid var(--border-color);
-  padding: 12px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-}
+      <article class="card-midia">
+        <figure>
+          <img src="https://via.placeholder.com/600x400" alt="Descrição detalhada da Foto ou Vídeo 4 para leitores de tela">
+          <figcaption><strong>Mídia 4:</strong> Legenda explicativa do quarto elemento audiovisual.</figcaption>
+        </figure>
+      </article>
 
-#btn-audio:hover {
-  background-color: #444444;
-}
+    </section>
+  </main>
 
-/* Seção de Introdução */
-.intro-section {
-  background-color: var(--card-bg);
-  padding: 24px;
-  border: 2px solid var(--border-color);
-  border-radius: 8px;
-  margin-bottom: 30px;
-}
+  <footer>
+    <p>&copy; 2026 - Apresentação Acessível</p>
+  </footer>
 
-/* Layout em Grid (4 Espaços) */
-.galeria-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-}
+  <script>
+    function lerPagina() {
+      if ('speechSynthesis' in window) {
+        const texto = document.getElementById('conteudo-principal').innerText;
+        const synth = window.speechSynthesis;
+        
+        if (synth.speaking) {
+          synth.cancel(); // Para a leitura se o botão for clicado novamente
+          return;
+        }
 
-/* Cartões de Mídia */
-.card-midia {
-  background-color: var(--card-bg);
-  border: 2px solid var(--border-color);
-  border-radius: 8px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-midia img, 
-.card-midia video {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-figcaption {
-  margin-top: 12px;
-  font-size: 1rem;
-  color: var(--text-muted);
-}
-
-/* Rodapé */
-footer {
-  margin-top: 40px;
-  text-align: center;
-  padding: 20px 0;
-  border-top: 1px solid var(--border-color);
-  font-size: 0.95rem;
-}
+        const utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR';
+        utterance.rate = 1.0;
+        synth.speak(utterance);
+      } else {
+        alert('O seu navegador não suporta a funcionalidade de leitura por áudio.');
+      }
+    }
+  </script>
+</body>
+</html>

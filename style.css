@@ -1,202 +1,116 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apresentação Acessível</title>
-  
-  <style>
-    /* Reset Básico e Variáveis de Cores Neutras (Alto Contraste) */
-    :root {
-      --bg-color: #f8f9fa;          /* Fundo claro neutro */
-      --card-bg: #ffffff;           /* Fundo dos cartões */
-      --text-main: #1a1a1a;         /* Texto quase preto para alto contraste */
-      --text-muted: #333333;        /* Texto secundário */
-      --border-color: #000000;      /* Bordas bem definidas */
-      --focus-outline: #005fcc;     /* Indicador de foco bem visível */
-      --btn-bg: #222222;            /* Botão neutro escuro */
-      --btn-text: #ffffff;          /* Texto do botão */
-    }
+/* Variáveis de Cores Neutras e Alto Contraste */
+:root {
+  --bg-color: #f8f9fa;          /* Fundo claro neutro */
+  --card-bg: #ffffff;           /* Fundo dos cartões */
+  --text-main: #1a1a1a;         /* Texto quase preto (alto contraste) */
+  --text-muted: #333333;        /* Texto secundário legível */
+  --border-color: #000000;      /* Bordas bem marcadas */
+  --focus-outline: #005fcc;     /* Destaque de foco bem visível */
+  --btn-bg: #222222;            /* Botão escuro neutro */
+  --btn-text: #ffffff;          /* Texto do botão */
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    body {
-      font-family: Arial, Helvetica, sans-serif; /* Fonte sem serifa facilita a leitura */
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.6;
-      font-size: 1.125rem; /* ~18px para legibilidade rápida */
-      padding: 20px;
-    }
+body {
+  font-family: Arial, Helvetica, sans-serif; /* Sem serifa para facilitar leitura */
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 1.125rem; /* ~18px para leitura confortável */
+  padding: 20px;
+}
 
-    /* Foco Acessível (Para navegação por Teclado e Leitores) */
-    a:focus, button:focus, [tabindex="0"]:focus {
-      outline: 4px solid var(--focus-outline);
-      outline-offset: 2px;
-    }
+/* Indicador visual de navegação via teclado */
+a:focus, button:focus, [tabindex="0"]:focus {
+  outline: 4px solid var(--focus-outline);
+  outline-offset: 2px;
+}
 
-    /* Cabeçalho */
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 0;
-      border-bottom: 2px solid var(--border-color);
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
+/* Cabeçalho */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 2px solid var(--border-color);
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
 
-    h1, h2 {
-      font-weight: 700;
-      color: var(--text-main);
-    }
+h1, h2 {
+  font-weight: 700;
+  color: var(--text-main);
+}
 
-    /* Botão de Áudio */
-    #btn-audio {
-      background-color: var(--btn-bg);
-      color: var(--btn-text);
-      border: 2px solid var(--border-color);
-      padding: 12px 20px;
-      font-size: 1rem;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+/* Botão de Leitura de Áudio */
+#btn-audio {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: 2px solid var(--border-color);
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
-    #btn-audio:hover {
-      background-color: #444444;
-    }
+#btn-audio:hover {
+  background-color: #444444;
+}
 
-    /* Seção de Introdução */
-    .intro-section {
-      background-color: var(--card-bg);
-      padding: 24px;
-      border: 2px solid var(--border-color);
-      border-radius: 8px;
-      margin-bottom: 30px;
-    }
+/* Seção de Texto */
+.intro-section {
+  background-color: var(--card-bg);
+  padding: 24px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
 
-    /* Layout da Galeria (Grid com 4 Espaços) */
-    .galeria-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
+/* Grid para as 4 Mídias */
+.galeria-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
 
-    /* Cartões de Mídia */
-    .card-midia {
-      background-color: var(--card-bg);
-      border: 2px solid var(--border-color);
-      border-radius: 8px;
-      padding: 15px;
-      display: flex;
-      flex-direction: column;
-    }
+/* Cartões das Fotos/Vídeos */
+.card-midia {
+  background-color: var(--card-bg);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
 
-    .card-midia img, 
-    .card-midia video {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 16 / 9;
-      object-fit: cover;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
+.card-midia img, 
+.card-midia video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
 
-    figcaption {
-      margin-top: 12px;
-      font-size: 1rem;
-      color: var(--text-muted);
-    }
+figcaption {
+  margin-top: 12px;
+  font-size: 1rem;
+  color: var(--text-muted);
+}
 
-    /* Rodapé */
-    footer {
-      margin-top: 40px;
-      text-align: center;
-      padding: 20px 0;
-      border-top: 1px solid var(--border-color);
-      font-size: 0.95rem;
-    }
-  </style>
-</head>
-<body>
-
-  <header class="header-container">
-    <h1>Apresentação do Projeto</h1>
-    <button id="btn-audio" aria-label="Ouvir texto da página em áudio" onclick="lerPagina()">
-      🔊 Ouvir Apresentação
-    </button>
-  </header>
-
-  <main id="conteudo-principal">
-    <section class="intro-section" tabindex="0">
-      <h2>Visão Geral</h2>
-      <p>
-        Bem-vindo à nossa apresentação. Este modelo utiliza cores neutras com alto contraste,
-        fontes legíveis e estrutura otimizada para tecnologias assistivas.
-      </p>
-    </section>
-
-    <section class="galeria-section" aria-label="Galeria de Mídias da Apresentação">
-      
-      <article class="card-midia">
-        <figure>
-          <img src="https://via.placeholder.com/600x400" alt="Descrição em texto simples e detalhada da Foto 1">
-          <figcaption><strong>Mídia 1:</strong> Legenda clara explicando a primeira foto.</figcaption>
-        </figure>
-      </article>
-
-      <article class="card-midia">
-        <figure>
-          <img src="https://via.placeholder.com/600x400" alt="Descrição em texto simples e detalhada da Foto 2">
-          <figcaption><strong>Mídia 2:</strong> Legenda clara explicando a segunda foto.</figcaption>
-        </figure>
-      </article>
-
-      <article class="card-midia">
-        <figure>
-          <img src="https://via.placeholder.com/600x400" alt="Descrição em texto simples e detalhada da Foto 3 ou Vídeo">
-          <figcaption><strong>Mídia 3:</strong> Legenda clara para o terceiro elemento audiovisual.</figcaption>
-        </figure>
-      </article>
-
-      <article class="card-midia">
-        <figure>
-          <img src="https://via.placeholder.com/600x400" alt="Descrição em texto simples e detalhada da Foto 4 ou Vídeo">
-          <figcaption><strong>Mídia 4:</strong> Legenda clara para o quarto elemento audiovisual.</figcaption>
-        </figure>
-      </article>
-
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2026 - Apresentação Acessível</p>
-  </footer>
-
-  <script>
-    function lerPagina() {
-      if ('speechSynthesis' in window) {
-        const texto = document.getElementById('conteudo-principal').innerText;
-        const synth = window.speechSynthesis;
-        
-        if (synth.speaking) {
-          synth.cancel(); // Para a leitura se o botão for clicado novamente
-          return;
-        }
-
-        const utterance = new SpeechSynthesisUtterance(texto);
-        utterance.lang = 'pt-BR';
-        utterance.rate = 1.0;
-        synth.speak(utterance);
-      } else {
-        alert('O seu navegador não suporta a funcionalidade de leitura por áudio.');
-      }
-    }
-  </script>
-</body>
+/* Rodapé */
+footer {
+  margin-top: 40px;
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.95rem;
+}
